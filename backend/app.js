@@ -8,7 +8,7 @@
 
   // ✅ Middleware — place these first!
   app.use(cors({
-    origin: ['http://localhost:4200', 'http://localhost:61418'],
+    origin: ['http://localhost:4200', 'http://localhost:61706'],
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   }));

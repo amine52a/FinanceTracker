@@ -1,0 +1,11 @@
+<div class="transfer-cards">
+  <div class="transfer-card" *ngFor="let card of cards; trackBy: trackByTitle">
+    <div class="card-icon">
+      <i [class]="card.icon"></i>
+    </div>
+    <div class="card-content">
+      <p class="card-title">{{ card.title }}</p>
+      <h2 class="card-amount">{{ card.total }}</h2>
+    </div>
+  </div>
+</div>

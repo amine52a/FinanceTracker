@@ -1,0 +1,96 @@
+<app-sidebar></app-sidebar>
+
+<form [formGroup]="companyForm" (ngSubmit)="onSubmit()" class="company-form" enctype="multipart/form-data">
+  <input type="hidden" formControlName="_id" />
+
+  <div class="form-group">
+    <label for="name">Company Name</label>
+    <input id="name" type="text" formControlName="name" required
+           [class.invalid]="companyForm.get('name')?.invalid && companyForm.get('name')?.touched" />
+    <div class="error-message" *ngIf="companyForm.get('name')?.invalid && companyForm.get('name')?.touched">
+      Name is required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input id="email" type="email" formControlName="email"
+           [class.invalid]="companyForm.get('email')?.invalid && companyForm.get('email')?.touched" />
+    <div class="error-message" *ngIf="companyForm.get('email')?.invalid && companyForm.get('email')?.touched">
+      Please enter a valid email address
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="phone">Phone</label>
+    <input id="phone" type="text" formControlName="phone" />
+  </div>
+
+  <div class="form-group">
+    <label for="address">Address</label>
+    <input id="address" type="text" formControlName="address" />
+  </div>
+
+  <div class="form-group">
+    <label for="numberOfWorkers">Number of Workers</label>
+    <input id="numberOfWorkers" type="number" formControlName="numberOfWorkers" min="1" />
+  </div>
+
+  <div class="form-group">
+    <label>Field of Company</label>
+    <div class="category-options">
+      <button type="button"
+              *ngFor="let category of categories"
+              (click)="selectCategory(category)"
+              [class.selected]="companyForm.get('field')?.value === category">
+        {{ category }}
+      </button>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="creationDate">Date of Creation</label>
+    <input id="creationDate" type="date" formControlName="creationDate" />
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea id="description" formControlName="description" rows="4"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="hrEmail">HR Email</label>
+    <input id="hrEmail" type="email" formControlName="hrEmail" />
+  </div>
+
+  <div class="form-group">
+    <label for="hrPhone">HR Phone</label>
+    <input id="hrPhone" type="text" formControlName="hrPhone" />
+  </div>
+
+  <!-- ✅ Image Upload -->
+  <div class="form-group">
+    <label for="images">Company Image</label>
+    <input id="images" type="file" (change)="onImageSelected($event)" accept="image/*" />
+  </div>
+
+  <!-- ✅ Image Preview -->
+  <div class="image-preview-container" *ngIf="imagePreviews.length > 0"
+       style="display: flex; gap: 10px; margin-bottom: 1em;">
+    <img *ngFor="let img of imagePreviews"
+         [src]="img"
+         alt="Image preview"
+         style="height: 100px; border-radius: 5px; object-fit: cover; cursor: pointer;"
+         (click)="removeImage()"
+         title="Click to remove" />
+  </div>
+
+  <!-- ✅ Form Actions -->
+  <div class="form-actions">
+    <button type="submit" class="btn-primary">
+      {{ isEditMode ? 'Update' : 'Add' }} Company
+    </button>
+    <button type="button" class="btn-secondary" (click)="onCancel()">Cancel</button>
+    <button *ngIf="isEditMode" type="button" class="btn-danger" (click)="onDelete()">Delete</button>
+  </div>
+</form>

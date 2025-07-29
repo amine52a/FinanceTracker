@@ -1,0 +1,106 @@
+<div class="form-container">
+  <div class="form-wrapper">
+<img src="" alt="Form Image" class="form-image" />
+
+    <form [formGroup]="workerForm" (ngSubmit)="onSubmit()">
+      <!-- Name and Email -->
+      <div class="input-row">
+        <div class="input-group">
+          <label for="name" class="form-label">Name</label>
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            placeholder="Your full name"
+            class="form-input"
+          />
+          <div
+            *ngIf="workerForm.get('name')?.invalid && workerForm.get('name')?.touched"
+            class="error-text"
+          >
+            Name is required.
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="email" class="form-label">Email</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="example@email.com"
+            class="form-input"
+          />
+          <div
+            *ngIf="workerForm.get('email')?.invalid && workerForm.get('email')?.touched"
+            class="error-text"
+          >
+            Please enter a valid email.
+          </div>
+        </div>
+      </div>
+
+      <!-- Position and Salary -->
+      <div class="input-row">
+        <div class="input-group">
+          <label for="position" class="form-label">Position</label>
+          <input
+            id="position"
+            type="text"
+            formControlName="position"
+            placeholder="Your position"
+            class="form-input"
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="salary" class="form-label">Salary</label>
+          <input
+            id="salary"
+            type="number"
+            formControlName="salary"
+            placeholder="Your salary"
+            class="form-input"
+          />
+        </div>
+      </div>
+
+      <!-- Hire Date and Company -->
+      <div class="input-row">
+        <div class="input-group">
+          <label for="hireDate" class="form-label">Hire Date</label>
+          <input
+            id="hireDate"
+            type="date"
+            formControlName="hireDate"
+            class="form-input"
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="companyId" class="form-label">Company</label>
+          <select id="companyId" formControlName="companyId" class="form-input">
+            <option value="" disabled>Select a company</option>
+            <option *ngFor="let company of companies" [value]="company._id">
+              {{ company.name }}
+            </option>
+          </select>
+          <div
+            *ngIf="workerForm.get('companyId')?.invalid && workerForm.get('companyId')?.touched"
+            class="error-text"
+          >
+            Please select a company.
+          </div>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="button-row">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" (click)="onCancel()" class="btn btn-secondary">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

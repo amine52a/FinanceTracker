@@ -1,0 +1,70 @@
+<div class="sidebar" [class.collapsed]="isSidebarCollapsed">
+  <!-- Logo and Collapse Button (Hidden when collapsed) -->
+  <div class="logo" *ngIf="!isSidebarCollapsed">
+    <div class="logo-wrapper">
+      <svg width="100" height="40" viewBox="0 0 100 40">
+        <path d="M12,15 L30,15 L24,27 L12,27 Z" fill="#4270F4" />
+        <text x="38" y="27" fill="#262A39" font-size="20" font-weight="bold">Codix</text>
+      </svg>
+      <!-- X Button -->
+      <button class="close-btn" (click)="toggleSidebar()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Floating Toggle Button (Visible only when collapsed) -->
+  <button
+    class="floating-toggle"
+    *ngIf="isSidebarCollapsed"
+    (click)="toggleSidebar()"
+  >
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <!-- Navigation Menu -->
+  <div class="nav-menu">
+    <a routerLink="/home" class="nav-item" [class.active]="isActive('/home')" [title]="isSidebarCollapsed ? 'Dashboard' : null">
+      <i class="fas fa-chart-line"></i>
+      <span *ngIf="!isSidebarCollapsed">Dashboard</span>
+    </a>
+
+    <a routerLink="/companies" class="nav-item" [class.active]="isActive('/companies')" [title]="isSidebarCollapsed ? 'Companies' : null">
+      <i class="fas fa-building"></i>
+      <span *ngIf="!isSidebarCollapsed">Companies</span>
+    </a>
+
+    <a routerLink="/predict" class="nav-item" [class.active]="isActive('/finances')" [title]="isSidebarCollapsed ? 'Finance' : null">
+      <i class="fas fa-wallet"></i>
+      <span *ngIf="!isSidebarCollapsed">Finance</span>
+    </a>
+
+    <a routerLink="/workers" class="nav-item" [class.active]="isActive('/workers')" [title]="isSidebarCollapsed ? 'Workers' : null">
+      <i class="fas fa-users"></i>
+      <span *ngIf="!isSidebarCollapsed">Workers</span>
+    </a>
+
+    <a routerLink="/predict" class="nav-item" [class.active]="isActive('/chat')" [title]="isSidebarCollapsed ? 'AI Consultant' : null">
+      <i class="fas fa-robot"></i>
+      <span *ngIf="!isSidebarCollapsed">AI Predictor</span>
+    </a>
+
+    <a routerLink="/settings" class="nav-item" [class.active]="isActive('/settings')" [title]="isSidebarCollapsed ? 'Settings' : null">
+      <i class="fas fa-cog"></i>
+      <span *ngIf="!isSidebarCollapsed">Settings</span>
+    </a>
+
+    <a (click)="logout()" class="nav-item" [title]="isSidebarCollapsed ? 'Logout' : null" style="cursor: pointer;">
+      <i class="fas fa-sign-out-alt"></i>
+      <span *ngIf="!isSidebarCollapsed">Logout</span>
+    </a>
+  </div>
+
+  <!-- Premium Box -->
+  <div class="premium-box" *ngIf="!isSidebarCollapsed">
+    <h3>Try our IA Consultant</h3>
+    <a routerLink="/chat">
+      <button class="premium-btn">Try Free</button>
+    </a>
+  </div>
+</div>

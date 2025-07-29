@@ -1,0 +1,34 @@
+<div class="promo-card">
+  <div class="promo-info">
+    <h2 class="promo-title">Smart money management</h2>
+    <p class="promo-desc">
+      Experience global transactions with zero hidden charges. Secure,
+      transfer and manage your finances with confidence.
+    </p>
+    <button class="promo-btn">Explore Features</button>
+  </div>
+
+  <div class="credit-card">
+    <div class="card-overlay"></div>
+    <div class="card-brand">
+      <div class="card-type">{{ cardDetails.type }}</div>
+      <div class="card-logo">
+        <div class="card-logo-circle"></div>
+        <div class="card-logo-circle"></div>
+      </div>
+    </div>
+
+    <div class="card-number">{{ formatCardNumber(cardDetails.number) }}</div>
+
+    <div class="card-details">
+      <div class="card-holder">
+        <div class="card-holder-label">CARD HOLDER</div>
+        <div class="card-holder-name">{{ cardDetails.holder }}</div>
+      </div>
+      <div class="card-expiry">
+        <div class="card-expiry-label">EXPIRES</div>
+        <div class="card-expiry-date">{{ cardDetails.expiry }}</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<app-sidebar></app-sidebar>
+
+<div class="company-dashboard">
+  <!-- Header Section -->
+  <div class="dashboard-header">
+    <div class="company-profile">
+      <div class="company-logo" [style.background-image]="'url(' + (company?.images?.[0] || 'assets/default-company.png') + ')'"></div>
+      <div class="company-info">
+        <h1>{{ company?.name }}</h1>
+        <div class="company-meta">
+          <span class="industry-tag">{{ company?.field }}</span>
+          <span class="founded-date">Est. {{ company?.creationDate | date:'yyyy' }}</span>
+          <span class="employees-count">{{ company?.numberOfWorkers }} employees</span>
+        </div>
+        <div class="contact-info">
+          <p><mat-icon>email</mat-icon> {{ company?.email }}</p>
+          <p><mat-icon>phone</mat-icon> {{ company?.phone }}</p>
+          <p><mat-icon>location_on</mat-icon> {{ company?.address }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Financial Overview -->
+  <div class="financial-section">
+    <h2>Financial Overview</h2>
+    <div class="financial-cards">
+      <div class="financial-card income">
+        <h3>Total Income</h3>
+        <div class="amount">{{ getTotalIncome() | currency }}</div>
+      </div>
+      <div class="financial-card expense">
+        <h3>Total Expenses</h3>
+        <div class="amount">{{ getTotalExpenses() | currency }}</div>
+      </div>
+      <div class="financial-card profit">
+        <h3>Net Profit</h3>
+        <div class="amount">{{ getTotalIncome() - getTotalExpenses() | currency }}</div>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <canvas baseChart
+        [data]="barChartData"
+        [type]="barChartType"
+        [options]="barChartOptions">
+      </canvas>
+    </div>
+  </div>
+
+  <!-- Workers Section -->
+  <div class="workers-section">
+    <div class="section-header">
+      <h2>Workforce ({{ workers.length }})</h2>
+    </div>
+    
+    <div class="table-container">
+      <table class="workers-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let worker of workers">
+            <td>
+              <div class="worker-avatar">{{ worker.name | initials }}</div>
+              {{ worker.name }}
+            </td>
+            <td>{{ worker.position }}</td>
+            <td>{{ worker.email }}</td>
+            <td>
+              
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="header">
+  <div class="welcome-section">
+    <h2 class="greeting">Welcome to Codix,</h2>
+<h1 class="welcome-title">Our Financial Overview</h1>
+
+  </div>
+
+  <div class="header-right">
+    <div class="notification-bell">
+      <i class="fas fa-bell"></i>
+      <div class="notification-indicator" *ngIf="hasNotifications"></div>
+    </div>
+
+    <div class="user-profile">
+      <img [src]="userImage" alt="User" class="profile-pic">
+    </div>
+
+    <div class="search-bar">
+      <i class="fas fa-search"></i>
+      <input 
+        type="text" 
+        placeholder="Find transactions..." 
+        (keyup)="onSearch($event)"
+        [(ngModel)]="searchQuery"
+      >
+    </div>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+<h2>Edit Company</h2>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" style="max-width: 400px; margin: auto;">
+
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Field</mat-label>
+    <input matInput formControlName="field" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Number of Workers</mat-label>
+    <input matInput type="number" formControlName="numberOfWorkers" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" formControlName="email" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Phone</mat-label>
+    <input matInput formControlName="phone" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Address</mat-label>
+    <input matInput formControlName="address" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Creation Date</mat-label>
+    <input matInput type="date" formControlName="creationDate" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>HR Email</mat-label>
+    <input matInput type="email" formControlName="hrEmail" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>HR Phone</mat-label>
+    <input matInput formControlName="hrPhone" />
+  </mat-form-field>
+
+  <!-- Image preview -->
+  <div *ngIf="currentImage" style="margin-bottom: 16px;">
+    <label>Current Image:</label>
+    <img [src]="imageBasePath + currentImage" alt="Company Image" style="max-width: 100%; max-height: 200px; display: block; margin-top: 8px;" />
+  </div>
+
+  <!-- Image upload input -->
+   <label>Upload New Image</label>
+<input type="file" (change)="onFileSelected($event)" />
+
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Save</button>
+  <button type="button" class="btn-secondary" (click)="onCancel()">Cancel</button>
+</form>

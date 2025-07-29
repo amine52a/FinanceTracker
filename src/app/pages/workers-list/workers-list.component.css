@@ -1,0 +1,236 @@
+/* workers-table.component.css */
+
+.main-content {
+  padding: 24px;
+  background-color: #f5f7fa;
+  min-height: calc(100vh - 64px);
+  margin-left: 240px;
+}
+
+.md-toolbar {
+  background: linear-gradient(135deg, #3f51b5, #2196f3);
+  color: white;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2px;
+  padding: 0 24px;
+}
+
+.md-toolbar-tools {
+  display: flex;
+  align-items: center;
+  height: 64px;
+}
+
+.md-toolbar-item.md-breadcrumb {
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 4px;
+}
+
+.md-toolbar-item.md-breadcrumb:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.md-button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+}
+
+.md-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.md-button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.md-button i {
+  font-size: 20px;
+}
+
+input[type="text"] {
+  padding: 10px 16px;
+  border-radius: 24px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.md-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.md-table-header {
+  font-weight: 600;
+  color: #5f6368;
+  font-size: 14px;
+  padding: 16px 24px;
+  text-align: left;
+  background-color: #f8f9fa;
+}
+
+.md-table-content {
+  padding: 12px 24px;
+  font-size: 14px;
+  color: #3c4043;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.md-table-headers-row {
+  height: 56px;
+}
+
+.md-table-content-row {
+  height: 52px;
+  transition: background-color 0.2s ease;
+}
+
+.md-table-content-row:hover {
+  background-color: #f5f7fa;
+}
+
+.md-table-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  margin-top: 16px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.md-table-count-info {
+  font-size: 14px;
+  color: #5f6368;
+}
+
+.md-table-count-info a {
+  color: #3f51b5;
+  text-decoration: none;
+  margin: 0 4px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.md-table-count-info a:hover {
+  background-color: rgba(63, 81, 181, 0.1);
+}
+
+.md-table-footer-item {
+  min-width: 36px;
+  height: 36px;
+  margin: 0 4px;
+  padding: 0;
+  border-radius: 50%;
+  background-color: transparent;
+  color: #3f51b5;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.md-table-footer-item:hover {
+  background-color: rgba(63, 81, 181, 0.1);
+}
+
+button[mat-button] {
+  color: #3f51b5;
+  font-weight: 500;
+  border-radius: 4px;
+  padding: 6px 12px;
+  transition: all 0.3s ease;
+}
+
+button[mat-button]:hover {
+  background-color: rgba(63, 81, 181, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 960px) {
+  .main-content {
+    padding: 16px;
+  }
+  
+  .md-table-header,
+  .md-table-content {
+    padding: 12px 16px;
+  }
+  
+  .md-table-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-content {
+    padding: 8px;
+  }
+  
+  .md-toolbar-tools {
+    height: 56px;
+    padding: 0 12px;
+  }
+  
+  .md-table-header,
+  .md-table-content {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+  
+  .md-table-count-info {
+    font-size: 13px;
+  }
+}
+
+/* Animation for table rows */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.md-table-content-row {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Highlight active pagination button */
+.md-table-footer-item.active {
+  background-color: #3f51b5;
+  color: white;
+}

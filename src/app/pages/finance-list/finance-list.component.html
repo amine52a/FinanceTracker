@@ -1,0 +1,27 @@
+<div class="p-4">
+  <h2 class="text-xl font-bold mb-4">Finance Records</h2>
+
+  <table class="w-full border">
+    <thead>
+      <tr class="bg-gray-100">
+        <th class="p-2 border">Type</th>
+        <th class="p-2 border">Amount</th>
+        <th class="p-2 border">Date</th>
+        <th class="p-2 border">Company</th>
+        <th class="p-2 border">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let finance of finances">
+        <td class="p-2 border">{{ finance.type }}</td>
+        <td class="p-2 border">{{ finance.amount }}</td>
+        <td class="p-2 border">{{ finance.date | date }}</td>
+        <td class="p-2 border">{{ finance.companyId?.name }}</td>
+        <td class="p-2 border">
+          <!-- Edit and Delete buttons (edit will be implemented later) -->
+          <button class="text-red-600" (click)="deleteFinance(finance._id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

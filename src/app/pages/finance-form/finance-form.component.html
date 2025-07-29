@@ -1,0 +1,78 @@
+<div class="form-container">
+  <form [formGroup]="financeForm" (ngSubmit)="onSubmit()" class="finance-form">
+    <h2>{{ financeData ? 'Edit Finance Record' : 'Add Finance Record' }}</h2>
+
+    <label for="companyId">Company</label>
+    <select id="companyId" formControlName="companyId" class="form-input">
+      <option value="" disabled>Select a company</option>
+      <option *ngFor="let company of companies" [value]="company._id">
+        {{ company.name }}
+      </option>
+    </select>
+    <div
+      *ngIf="financeForm.get('companyId')?.invalid && financeForm.get('companyId')?.touched"
+      class="error-text"
+    >
+      Please select a company.
+    </div>
+
+    <label for="type">Type</label>
+    <select id="type" formControlName="type" class="form-input">
+      <option value="" disabled>Select type</option>
+      <option value="income">Income</option>
+      <option value="expense">Expense</option>
+    </select>
+    <div
+      *ngIf="financeForm.get('type')?.invalid && financeForm.get('type')?.touched"
+      class="error-text"
+    >
+      Please select a type.
+    </div>
+
+    <label for="amount">Amount</label>
+    <input
+      id="amount"
+      type="number"
+      formControlName="amount"
+      placeholder="Enter amount"
+      class="form-input"
+      min="0.01"
+      step="0.01"
+    />
+    <div
+      *ngIf="financeForm.get('amount')?.invalid && financeForm.get('amount')?.touched"
+      class="error-text"
+    >
+      Please enter a valid amount (greater than 0).
+    </div>
+
+    <label for="date">Date</label>
+    <input
+      id="date"
+      type="date"
+      formControlName="date"
+      class="form-input"
+    />
+    <div
+      *ngIf="financeForm.get('date')?.invalid && financeForm.get('date')?.touched"
+      class="error-text"
+    >
+      Please select a date.
+    </div>
+
+    <label for="description">Description</label>
+    <textarea
+      id="description"
+      formControlName="description"
+      placeholder="Optional description"
+      class="form-textarea"
+    ></textarea>
+
+    <div class="button-row">
+      <button type="submit" class="btn btn-primary" [disabled]="financeForm.invalid">
+        {{ financeData ? 'Update' : 'Add' }}
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</div>

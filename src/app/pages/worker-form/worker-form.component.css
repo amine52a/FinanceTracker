@@ -1,0 +1,119 @@
+/* Container for the whole form centered */
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem; /* 48px */
+  background-color: #f9fafb; /* light gray background optional */
+  min-height: 100vh; /* full viewport height */
+  box-sizing: border-box;
+}
+
+.form-wrapper {
+  background-color: #fff;
+  max-width: 600px;
+  width: 100%;
+  padding: 2.5rem; /* 40px */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 0.375rem; /* 6px */
+  box-sizing: border-box;
+}
+
+.form-image {
+  display: block;
+  margin: 0 auto 2.5rem; /* bottom margin 40px */
+  max-width: 150px;
+  height: auto;
+}
+
+/* Row with 2 inputs side-by-side */
+.input-row {
+  display: flex;
+  gap: 1.25rem; /* 20px */
+  margin-bottom: 1.5rem; /* 24px */
+}
+
+/* Each input group with label and input */
+.input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Labels */
+.form-label {
+  font-size: 0.875rem; /* 14px */
+  color: #4b5563; /* gray-600 */
+  margin-bottom: 0.5rem; /* 8px */
+  font-weight: 600;
+}
+
+/* Inputs and select */
+.form-input {
+  padding: 0.75rem 1.25rem; /* 12px 20px */
+  font-size: 1rem; /* 16px */
+  color: #374151; /* gray-700 */
+  border: 1px solid #d1d5db; /* gray-300 */
+  border-radius: 0.375rem; /* 6px */
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input::placeholder {
+  color: #9ca3af; /* gray-400 */
+}
+
+/* Focus style for inputs */
+.form-input:focus {
+  border-color: #6366f1; /* indigo-500 */
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3); /* indigo shadow */
+}
+
+/* Error message styling */
+.error-text {
+  margin-top: 0.25rem; /* 4px */
+  color: #dc2626; /* red-600 */
+  font-size: 0.875rem; /* 14px */
+}
+
+/* Buttons container */
+.button-row {
+  display: flex;
+  gap: 1rem; /* 16px */
+  margin-top: 1.5rem; /* 24px */
+}
+
+/* Primary button */
+.btn-primary {
+  flex: 1;
+  background-color: #6366f1; /* indigo-500 */
+  color: white;
+  padding: 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #4f46e5; /* darker indigo */
+}
+
+/* Secondary button */
+.btn-secondary {
+  flex: 1;
+  background-color: white;
+  color: #374151; /* gray-700 */
+  padding: 1rem;
+  font-size: 1rem;
+  border: 1px solid #d1d5db; /* gray-300 */
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #f3f4f6; /* gray-100 */
+}

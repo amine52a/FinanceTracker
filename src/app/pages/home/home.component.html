@@ -1,0 +1,24 @@
+<app-sidebar></app-sidebar>
+<router-outlet></router-outlet>
+
+<div class="main-content">
+  <app-header 
+    [userName]="'amine'"
+    [userImage]="'https://i.pravatar.cc/100?img=8'"
+    [hasNotifications]="true"
+    (search)="onSearch($event)">
+  </app-header>
+
+  <div class="dashboard-container">
+    <div class="dashboard-main">
+      <app-transfer-cards></app-transfer-cards>
+        <app-promo-card></app-promo-card>
+<app-user-project-chart [userCount]="userCount" [projectCount]="projectCount"></app-user-project-chart>
+
+    </div>
+    
+    <div class="dashboard-sidebar">
+      <!-- We'll add sidebar widgets here later -->
+    </div>
+  </div>
+</div>

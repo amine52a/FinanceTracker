@@ -1,0 +1,47 @@
+<app-sidebar></app-sidebar>
+<div class="container">
+  <h2>Select a company to predict its revenue</h2>
+
+  <div *ngIf="isLoading" class="loading">Loading data...</div>
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+  <div class="company-list">
+    <div *ngFor="let company of companies" class="company-card">
+      <span class="company-name">{{ company.name }}</span>
+      <button class="predict-btn" (click)="selectCompany(company)">Predict Revenue</button>
+    </div>
+  </div>
+
+  <div *ngIf="selectedCompanyId" class="prediction-container">
+    <h3 class="prediction-header">Revenue Prediction for {{ companyName }}</h3>
+
+    <!-- Changed from id to template reference variable -->
+    <div class="chart-container">
+      <canvas #revenueChart></canvas>
+    </div>
+
+    <div class="revenue-section">
+      <h4 class="section-title">Past Revenue (Last 6 Months)</h4>
+      <ul class="revenue-list" *ngIf="pastRevenue.length; else noPastData">
+        <li *ngFor="let income of pastRevenue" class="revenue-item">
+          ${{ income | number:'1.0-0' }}
+        </li>
+      </ul>
+      <ng-template #noPastData>
+        <p class="no-data">No past revenue data available</p>
+      </ng-template>
+    </div>
+
+    <div class="revenue-section">
+      <h4 class="section-title">Predicted Revenue (Next 6 Months)</h4>
+      <ul class="revenue-list" *ngIf="predictions.length; else noPredictionData">
+        <li *ngFor="let predicted of predictions" class="prediction-item">
+          ${{ predicted | number:'1.0-0' }}
+        </li>
+      </ul>
+      <ng-template #noPredictionData>
+        <p class="no-data">No prediction data available</p>
+      </ng-template>
+    </div>
+  </div>
+</div>

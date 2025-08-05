@@ -1,22 +1,23 @@
-Angular Finance Project
-Project Overview
-This is a full-stack finance management application built with Angular for the frontend and Node.js for the backend. It helps users track and manage their finances with ease through a clean and interactive interface.
+Angular Finance Project 💰📊
+Project Overview 🚀
+This is a full-stack finance management app built with Angular (frontend) and Node.js (backend).
+It helps you track, analyze, and manage your personal or business finances effortlessly.
 
 ⚠️ Important Note ⚠️
 I made an error while pushing the project files. The frontend and backend code are in separate folders. Please download the frontend and backend folders separately, then place the frontend folder inside the main project directory when setting up.
 
-Features
-User Authentication (login/register)
+Features ✨
+🔐 User Authentication (Login/Register)
 
-Income and Expense Tracking
+💸 Income & Expense Tracking
 
-Budget Management
+📈 Budget Management
 
-Financial Dashboard with charts
+📊 Financial Dashboard with charts
 
-Responsive UI for desktop and mobile
+📱 Responsive UI for desktop & mobile
 
-Technologies Used
+Technologies Used 🛠️
 Angular (frontend)
 
 Node.js and Express (backend)
@@ -27,7 +28,7 @@ JWT for authentication
 
 Chart.js (for visual reports)
 
-Installation & Setup
+Installation & Setup 🖥️
 Prerequisites
 Node.js & npm installed
 
@@ -65,51 +66,79 @@ bash
 cd frontend
 ng serve
 Open your browser at http://localhost:4200 to access the app.
-Running the Project
-To run the project smoothly, you need to split your terminal into 4 separate terminals to run these parts simultaneously:
+Running the Project 🚀
+To run the project smoothly, open 4 separate terminals and run these parts simultaneously:
 
-Frontend (Angular app)
+1)Frontend (Angular app)
 
-Backend (Node.js server)
+2)Backend (Node.js server)
 
-IA Model 1 service
+3)IA Model 1 service (FastAPI text generation)
 
-IA Model 2 service
+4)IA Model 2 service (Flask linear regression)
 
-Terminal commands:
-Frontend:
 
+🖥️ Terminal Commands to Run the Project
+To run the project smoothly, open 4 separate terminals and run these commands simultaneously:
+
+1️⃣ Frontend (Angular)
 bash
 cd frontend
-npm install      # (only if not done yet)
+npm install      # (only if dependencies are not installed yet)
 ng serve
-Backend:
-
+2️⃣ Backend (Node.js)
 bash
 cd backend
-npm install      # (only if not done yet)
+npm install      # (only if dependencies are not installed yet)
 npm start
-IA Model 1 service:
-
+3️⃣ IA Model 1 Service (FastAPI - Text Generation)
 bash
 cd backend/ia-model1
-npm install      # if needed
-npm start        # or the specific command you use to launch the first IA model
-IA Model 2 service:
-
+pip install fastapi "uvicorn[standard]" transformers torch  # (run once if needed)
+uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+4️⃣ IA Model 2 Service (Flask - Linear Regression)
 bash
 cd backend/ia-model2
-npm install      # if needed
-npm start        # or the specific command for the second IA model
-Make sure all four terminals are running at the same time for the app to work correctly, as the frontend communicates with the backend and both IA model services.
-Usage
-Register or log in
+pip install flask scikit-learn numpy    # (run once if needed)
+python app.py
+⚠️ Important: Make sure all four terminals are running at the same time to allow proper communication between the frontend, backend, and the two IA model services.
+📝 Usage
+This finance management app helps you take control of your finances with ease. Here’s how to get started and what you can do:
 
-Add and manage your incomes and expenses
+1. 🆕 Register or 🔐 Log In
+Create a new account with your email and password or log in if you already have one.
 
-Set budgets and track spending
+Your data is saved securely and accessible only to you. 🔒
 
-View your financial dashboard with summaries and charts
+2. ➕ Add and 🛠️ Manage Your Financial Data
+Add income 💵 and expense 💸 entries with details like amount, date, and category (e.g., salary, groceries, utilities).
+
+Edit ✏️ or delete 🗑️ any existing entries to keep your records accurate.
+
+Categorize 📂 your transactions for better organization and reporting.
+
+3. 📊 Set Budgets and Track Spending
+Define monthly or custom budgets 📅 for different categories to control your spending.
+
+Receive alerts ⚠️ or visual cues if you’re close to exceeding your budget.
+
+Adjust budgets 🔄 anytime as your financial goals evolve.
+
+4. 📈 View Your Financial Dashboard
+Access a comprehensive dashboard summarizing your financial health.
+
+View charts 📉📊 and graphs that show your income vs. expenses over time.
+
+Analyze spending patterns and budget adherence with interactive reports.
+
+Use insights 💡 to make smarter financial decisions.
+
+5. 🤖 AI-Powered Insights and Predictions
+Benefit from AI modules that generate financial advice or predict future trends based on your data.
+
+The FastAPI service provides text-based guidance and explanations. 📜
+
+The Flask service predicts future revenue or expenses using linear regression models. 📈
 
 Contributions
 Feel free to submit issues or pull requests for improvements.

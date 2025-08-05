@@ -42,16 +42,12 @@ Clone or download the repository.
 
 Download the backend folder and navigate into it:
 
-bash
-Copier
-Modifier
+
 cd backend
 npm install
 Download the frontend folder separately and place it inside the main project folder, then navigate into it:
 
-bash
-Copier
-Modifier
+
 cd frontend
 npm install
 Create a .env file in the backend folder and configure:
@@ -62,16 +58,12 @@ JWT secret key
 
 Start the backend server:
 
-bash
-Copier
-Modifier
+
 cd backend
 npm start
 Start the frontend server:
 
-bash
-Copier
-Modifier
+
 cd frontend
 ng serve
 Open your browser at http://localhost:4200 to access the app.
@@ -86,30 +78,22 @@ To run the project smoothly, open 4 separate terminals and run these parts simul
 
 🖥️ Terminal Commands to Run the Project
 1️⃣ Frontend (Angular)
-bash
-Copier
-Modifier
+
 cd frontend
 npm install      # (only if dependencies are not installed yet)
 ng serve
 2️⃣ Backend (Node.js)
-bash
-Copier
-Modifier
+
 cd backend
 npm install      # (only if dependencies are not installed yet)
 npm start
 3️⃣ IA Model 1 Service (FastAPI - Text Generation)
-bash
-Copier
-Modifier
+
 cd backend/ia-model1
 pip install fastapi "uvicorn[standard]" transformers torch  # (run once if needed)
 uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 4️⃣ IA Model 2 Service (Flask - Linear Regression)
-bash
-Copier
-Modifier
+
 cd backend/ia-model2
 pip install flask scikit-learn numpy    # (run once if needed)
 python app.py

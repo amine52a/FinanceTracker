@@ -4,7 +4,10 @@ const Company = require('../models/Company');
 const multer = require('multer');
 const path = require('path');
 
-// 🔧 Configure multer storage
+// Import auth middleware
+const { verifyToken, isAdmin } = require('../middlewares/auth');
+
+// Configure multer storage
 const storage = multer.diskStorage({
   destination: './uploads', // make sure this folder exists
   filename: (req, file, cb) => {
@@ -12,17 +15,15 @@ const storage = multer.diskStorage({
     cb(null, uniqueName);
   }
 });
-
 const upload = multer({ storage });
 
-// ✅ Get all companies with optional filtering
+// Public GET routes (anyone can access)
 router.get('/', async (req, res) => {
   try {
     const filter = {};
     if (req.query.industry) {
       filter.industry = req.query.industry;
     }
-
     const companies = await Company.find(filter);
     res.json({
       success: true,
@@ -37,18 +38,15 @@ router.get('/', async (req, res) => {
   }
 });
 
-// ✅ Get a single company by ID  <--- ADDED ROUTE
 router.get('/:id', async (req, res) => {
   try {
     const company = await Company.findById(req.params.id);
-
     if (!company) {
       return res.status(404).json({
         success: false,
         error: 'Company not found',
       });
     }
-
     res.json({
       success: true,
       data: company,
@@ -61,8 +59,10 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// ✅ Create a company with image upload
-router.post('/', upload.single('image'), async (req, res) => {
+// Protected routes — require user to be logged in and admin
+
+// Create company (admin only)
+router.post('/', verifyToken, isAdmin, upload.single('image'), async (req, res) => {
   try {
     const {
       name, email, phone, address, industry,
@@ -83,7 +83,7 @@ router.post('/', upload.single('image'), async (req, res) => {
       phone,
       address,
       industry,
-      images: req.file ? [req.file.filename] : [], // 👈 save uploaded image
+      images: req.file ? [req.file.filename] : [],
       numberOfWorkers,
       dateOfCreation,
       description,
@@ -112,12 +112,10 @@ router.post('/', upload.single('image'), async (req, res) => {
   }
 });
 
-// ✅ Update a company with image upload
-router.put('/:id', upload.single('image'), async (req, res) => {
+// Update company (admin only)
+router.put('/:id', verifyToken, isAdmin, upload.single('image'), async (req, res) => {
   try {
     const updateData = req.body;
-
-    // 👇 If a new image is uploaded, replace existing one
     if (req.file) {
       updateData.images = [req.file.filename];
     }
@@ -147,18 +145,16 @@ router.put('/:id', upload.single('image'), async (req, res) => {
   }
 });
 
-// ✅ Delete a company
-router.delete('/:id', async (req, res) => {
+// Delete company (admin only)
+router.delete('/:id', verifyToken, isAdmin, async (req, res) => {
   try {
     const company = await Company.findByIdAndDelete(req.params.id);
-
     if (!company) {
       return res.status(404).json({
         success: false,
         error: 'Company not found'
       });
     }
-
     res.json({
       success: true,
       data: {}

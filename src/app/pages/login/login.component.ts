@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../services/auth.service';  // adjust path
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,11 @@ export class LoginComponent {
   email = '';
   password = '';
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private authService: AuthService  // add this
+  ) {}
 
   login() {
     this.http.post('http://localhost:5000/api/login', {
@@ -23,9 +28,14 @@ export class LoginComponent {
       password: this.password
     }).subscribe({
       next: (res: any) => {
-        alert('Login successful!');
-        // Optionally save JWT token here if your backend sends one
-        this.router.navigate(['/home']);
+        if (res.token && res.role) {
+          this.authService.setToken(res.token);
+          this.authService.setRole(res.role);
+          alert('Login successful!');
+          this.router.navigate(['/home']);
+        } else {
+          alert('Login failed: no token received');
+        }
       },
       error: (err) => {
         alert('Invalid credentials');

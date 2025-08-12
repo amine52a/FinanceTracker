@@ -172,7 +172,7 @@ export class CompanyDetailsComponent implements OnInit {
           data: monthlyData.income,
           backgroundColor: '#4CAF50'
         },
-        {
+        {   
           label: 'Expenses',
           data: monthlyData.expense,
           backgroundColor: '#F44336'

@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 import { SidebarComponent } from "../../components/sidebar/sidebar.component";
+import { AuthService } from '../../services/auth.service';  // Adjust path as needed
 
 @Component({
   selector: 'app-company-form',
@@ -25,7 +26,8 @@ export class CompanyFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -98,8 +100,12 @@ export class CompanyFormComponent implements OnInit {
     const formData = new FormData();
 
     for (const key in formValues) {
-      if (formValues[key] && key !== '_id') {
-        formData.append(key, formValues[key]);
+      if (
+        formValues[key] !== null &&
+        formValues[key] !== undefined &&
+        key !== '_id'
+      ) {
+        formData.append(key, String(formValues[key]));
       }
     }
 
@@ -107,7 +113,15 @@ export class CompanyFormComponent implements OnInit {
       formData.append('image', this.selectedFile);
     }
 
-    this.http.post("http://localhost:5000/api/companies", formData)
+    const token = this.authService.getToken();
+    if (!token) {
+      alert('You are not authenticated');
+      return;
+    }
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    this.http.post("http://localhost:5000/api/companies", formData, { headers })
       .subscribe({
         next: (response) => {
           alert('Company created successfully!');
@@ -116,7 +130,7 @@ export class CompanyFormComponent implements OnInit {
         },
         error: (err) => {
           console.error('❌ Error creating company:', err);
-          alert('Error creating company. Please try again.');
+          alert(err.error?.message || 'Error creating company. Please try again.');
         }
       });
   }
@@ -124,11 +138,20 @@ export class CompanyFormComponent implements OnInit {
   updateCompany() {
     const formValues = this.companyForm.value;
     const id = formValues._id;
+    if (!id) {
+      alert('Invalid company ID');
+      return;
+    }
+
     const formData = new FormData();
 
     for (const key in formValues) {
-      if (formValues[key] && key !== '_id') {
-        formData.append(key, formValues[key]);
+      if (
+        formValues[key] !== null &&
+        formValues[key] !== undefined &&
+        key !== '_id'
+      ) {
+        formData.append(key, String(formValues[key]));
       }
     }
 
@@ -136,7 +159,15 @@ export class CompanyFormComponent implements OnInit {
       formData.append('image', this.selectedFile);
     }
 
-    this.http.put(`http://localhost:5000/api/companies/${id}`, formData)
+    const token = this.authService.getToken();
+    if (!token) {
+      alert('You are not authenticated');
+      return;
+    }
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    this.http.put(`http://localhost:5000/api/companies/${id}`, formData, { headers })
       .subscribe({
         next: (response) => {
           alert('Company updated successfully!');
@@ -145,7 +176,7 @@ export class CompanyFormComponent implements OnInit {
         },
         error: (err) => {
           console.error('Error updating company:', err);
-          alert('Error updating company. Please try again.');
+          alert(err.error?.message || 'Error updating company. Please try again.');
         }
       });
   }
@@ -153,7 +184,20 @@ export class CompanyFormComponent implements OnInit {
   onDelete() {
     if (confirm('Are you sure you want to delete this company?')) {
       const id = this.companyForm.get('_id')?.value;
-      this.http.delete(`http://localhost:5000/api/companies/${id}`)
+      if (!id) {
+        alert('Invalid company ID');
+        return;
+      }
+
+      const token = this.authService.getToken();
+      if (!token) {
+        alert('You are not authenticated');
+        return;
+      }
+
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+      this.http.delete(`http://localhost:5000/api/companies/${id}`, { headers })
         .subscribe({
           next: () => {
             alert('Company deleted successfully!');
@@ -162,7 +206,7 @@ export class CompanyFormComponent implements OnInit {
           },
           error: (err) => {
             console.error('Error deleting company:', err);
-            alert('Error deleting company. Please try again.');
+            alert(err.error?.message || 'Error deleting company. Please try again.');
           }
         });
     }

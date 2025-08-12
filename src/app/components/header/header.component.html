@@ -11,16 +11,13 @@
       <div class="notification-indicator" *ngIf="hasNotifications"></div>
     </div>
 
-    <div class="user-profile">
-      <img [src]="userImage" alt="User" class="profile-pic">
-    </div>
+   
 
     <div class="search-bar">
       <i class="fas fa-search"></i>
       <input 
         type="text" 
         placeholder="Find transactions..." 
-        (keyup)="onSearch($event)"
         [(ngModel)]="searchQuery"
       >
     </div>

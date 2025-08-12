@@ -53,16 +53,18 @@
   </mat-form-field>
 
   <!-- Image preview -->
-  <div *ngIf="currentImage" style="margin-bottom: 16px;">
-    <label>Current Image:</label>
-    <img [src]="imageBasePath + currentImage" alt="Company Image" style="max-width: 100%; max-height: 200px; display: block; margin-top: 8px;" />
-  </div>
+<!-- Image preview -->
+<div *ngIf="currentImage" style="margin-bottom: 16px;">
+  <label>Current Image:</label>
+  <img [src]="currentImage" alt="Company Image" style="max-width: 100%; max-height: 200px; display: block; margin-top: 8px;" />
+</div>
+
 
   <!-- Image upload input -->
-   <label>Upload New Image</label>
+<label>Upload New Image</label>
 <input type="file" (change)="onFileSelected($event)" />
 
 
-  <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Save</button>
+<button mat-raised-button color="primary" type="submit">Save</button>
   <button type="button" class="btn-secondary" (click)="onCancel()">Cancel</button>
 </form>
